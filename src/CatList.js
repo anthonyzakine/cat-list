@@ -12,7 +12,7 @@ export default class CatList extends Component {
 
       <ul className="list-group">{
          this.props.cats.map( item =>(
-            <li key={item.id} onClick={(e) =>this.props.selectCat(item)} className="list-group-item " ><i className="fa fa-cog" aria-hidden="true"></i>{item.slug}</li>))
+            <li key={item.id} onClick={(e) =>this.props.selectCat(item)} className="list-group-item " ><img src={item.url}/><i className="fa fa-cog" aria-hidden="true"></i>{item.slug}</li>))
         }
       </ul>
     );
