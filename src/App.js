@@ -4,53 +4,52 @@ import logo from './logo.svg';
 
 import './App.css';
 import data from './data.json'
-import CatList from './CatList'
-import CatSelection from './CatSelection'
-import CatCreaction from './CatCreaction'
+import ColorList from './ColorList'
+import ColorSelection from './ColorSelection'
+import ColorCreaction from './ColorCreaction'
 
 class App extends Component {
 
   constructor(props){
     super(props);
-    const smartCats = data.cats.map(item => {
+    const smartColors = data.colors.map(item => {
 
       return {...item,selected:false};
     });
 
-    //console.log('smartCats :' ,smartCats)
+
 
     this.state={
-      cats:smartCats
+      colors:smartColors
     }
   }
 
-  selectCat(cat){
+  selectColor(color){
     console.log('this :', this);
-    const newCats = this.state.cats.map(item =>{
+    const newColors = this.state.colors.map(item =>{
 
-      if(item.id === cat.id){
+      if(item.id === color.id){
         item.selected = !item.selected;
       }
       return item
     })
     this.setState({
-      cats:newCats
+      colors:newColors
     });
   }
 
-  addCat = (url) =>{
+  addCat = (name,color) =>{
 
     const id = uuid();
-    const strength = Math.round(Math.random()*100)
-    console.log('strength : ' ,strength);
+    console.log('name : ' ,name);
     console.log('id : ' ,id);
-    console.log('URL : ' ,url);
+    console.log('color : ' ,color);
 
     this.setState({
-      cats: [...this.state.cats, {id,url,strength}]
+      colors: [...this.state.colors, {id,color,name}]
     },()=>{
-      const test= JSON.stringify(this.state.cats[this.state.cats.length-1])
-      console.log('Chat add : ', test );
+      const test= JSON.stringify(this.state.colors[this.state.colors.length-1])
+      console.log('couleur add : ', test );
     });
   }
 
@@ -59,12 +58,12 @@ class App extends Component {
       <div className="App container">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Liste de chats</h2>
+          <h2>Ptit Test</h2>
         </div>
         <p className="App-intro"></p>
-        <CatCreaction addCat={this.addCat}/>
-        <CatSelection cats ={this.state.cats}/>
-        <CatList cats ={this.state.cats} selectCat={this.selectCat.bind(this)}/>
+        <CColorCreaction addColors={this.addColors}/>
+        <ColorSelection colors ={this.state.colors}/>
+        <ColorList colors ={this.state.colors} selectColor={this.selectColor.bind(this)}/>
 
       </div>
     );
